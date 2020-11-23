@@ -1,0 +1,42 @@
+<header>
+    <nav class="split">
+        <div class="left">
+            <a href="/">Shelf.page</a>
+        </div>
+        <div class="right">
+            <a href="/user/signup">Sign up</a>
+        </div>
+    </nav>
+</header>
+
+<div class="hero">
+    <h1>Log in</h1>
+</div>
+
+<article>
+    <form action="/user/login" method="post">
+        <label>
+            <span>Username</span>
+            <div class="fixed block input-wrapper">
+                <input type="text" name="username"
+                                   autocomplete="username"
+                                   placeholder="thesephist"
+                                   required>
+            </div>
+        </label>
+        <label>
+            <span>Password</span>
+            <div class="fixed block input-wrapper">
+                <input type="password" name="password"
+                                       autocomplete="current-password" required>
+            </div>
+        </label>
+        <p>
+        <a href="/user/forgot">Forgot your password?</a>
+        |
+        <a href="/user/signup">Don't have an account? Sign up</a>
+        </p>
+        <button class="accent block" type="submit">Log in &rarr;</button>
+    </form>
+</article>
+

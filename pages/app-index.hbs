@@ -1,0 +1,134 @@
+<div
+  object
+  key:display-name="@search"
+>
+    <header>
+        <nav class="split">
+            <div class="left">
+                <a href="/">Shelf.page</a>
+            </div>
+            <div class="right">
+                {{#if currentUser}}
+                    <a href="/{{currentUser.details.username}}/?preview=true" target="_blank">Preview</a>
+                    <a href="/user/logout">Log out</a>
+                {{else}}
+                    <a href="/user/signup">Get your own shelf &rarr;</a>
+                {{/if}}
+            </div>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>
+            <span 
+                  target:display-name="@innerText"
+                  edit-control
+                  edit:display-name:without-remove
+                  >{{displayName}}</span>'s shelf.page
+        </h1>
+        <p class="bio"
+           object
+           key:bio="@innerText"
+           edit-control
+           edit:bio:without-remove
+           >{{bio}}</p>
+    </div>
+
+    <article>
+        {{#if isPageAuthor}}
+        <div class="instructions">
+            <p><strong>Customize this page!</strong></p>
+            <p>
+            Parts of this page are <em>editable</em>!
+            (<a href="#" id="highlightEditables">Click here</a> to see which parts.)
+            </p>
+            <p>
+            Tap on any editable part of the page to update and remove
+            things, and drag to reorder links. You can share your page with friends with your link,
+            <a href="https://shelf.page/{{currentUser.details.username}}"
+               target="_blank">
+                shelf.page/{{currentUser.details.username}}
+            </a>.
+            </p>
+            <p>
+            When others visit this page, the links you add below will be clickable.
+            (You can also try it yourself by opening a private browsing tab.)
+            </p>
+        </div>
+        {{/if}}
+
+        <p class="preamble">
+        Here's what
+        <span watch:display-name="@innerText">{{displayName}}</span>
+        has been reading and recommending, about...
+        </p>
+
+        <div 
+          array
+          key="topics"
+        >
+            {{#for topic in topics}}
+            <section object
+                     key:name="@search">
+                <div class="topic-header split">
+                    <div class="left">
+                        <h2 class="topic-name"
+                            target:name="@innerText"
+                            edit-control
+                            edit:name>
+                            {{default topic.name "New topic"}}
+                        </h2>
+                    </div>
+                    <div class="right">
+                        <button class="accent block"
+                                new:link 
+                                edit-control-hide>
+                            Add link
+                        </button>
+                    </div>
+                </div>
+                <div class="links"
+                     array
+                     key="links"
+                     sortable>
+                    {{#for link in topic.links}}
+                    <a class="{{#if ../../isPageAuthor}}fixed{{/if}} block link-item" href="{{link.url}}"
+                       noopener noreferer
+                       object
+                       target="_blank"
+                       {{#if ../../isPageAuthor}}prevent-default{{/if}}
+                       key:label="@search">
+                        <span class="link-title"
+                             target:label="@innerText"
+                             edit-control
+                             edit:label>
+                            {{default link.label "Article name"}}
+                        </span>
+                        <span class="link-url"
+                             target="_blank"
+                             object
+                             key:url="@innerText"
+                             edit-control
+                             edit:url:without-remove>
+                            {{default link.url "https://shelf.page/"}}
+                        </span>
+                        {{#unless ../../isPageAuthor}}
+                          <span class="link-url-button">
+                              read this &rarr;
+                          </span>
+                        {{/unless}}
+                    </a>
+                {{/for}}</div>
+            </section>
+            {{/for}}
+        </div>
+
+        <section>
+            <div class="topic-header split">
+                <h2 new:topic edit-control-hide>
+                    + Add a topic section
+                </h2>
+            </div>
+        </section>
+    </article>
+</div>

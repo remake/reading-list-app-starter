@@ -1,0 +1,409 @@
+html {
+    --font-serif: 'IBM Plex Serif', 'Georgia', serif;
+    --font-mono: 'IBM Plex Mono', 'Monaco', 'Courier', monospace;
+    --theme-color: #0dad80;
+    --font-color: #111;
+    font-size: 18px;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;
+    font-family: var(--font-serif);
+
+    --block-accent-color: var(--theme-color);
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* REMAKE BUTTON STYLES */
+/* copied from blocks.css, linus.zone/blocks */
+
+.remake-edit__button:not(:last-child) {
+    margin-right: 12px !important;
+}
+
+.remake-edit__button {
+    font-family: var(--font-serif) !important;
+
+    border: 3px solid var(--block-text-color);
+    border-radius: 3px;
+    padding: 4px 8px;
+    font-weight: bold;
+    cursor: pointer;
+    box-sizing: border-box;
+
+    position: relative;
+    top: -2px;
+    left: -2px;
+    transition: transform 0.2s;
+    z-index: 1;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.remake-edit__button::before {
+    content: "";
+    background-color: inherit;
+    border: 3px solid var(--block-text-color);
+    border-radius: 3px;
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.remake-edit__button:hover,
+.remake-edit__button:focus {
+    transform: translate(2px, 2px);
+}
+
+.remake-edit__button::after {
+    content: "";
+    display: block;
+    background: var(--block-text-color);
+    border: 3px solid var(--block-text-color);
+    border-radius: 3px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 0;
+    z-index: -2;
+    transition: transform 0.2s;
+}
+
+.remake-edit__button:hover::after,
+.remake-edit__buttonblock:focus::after {
+    transform: translate(-2px, -3px);
+}
+
+.remake-edit__button:active {
+    color: var(--block-text-color);
+    transform: translate(3px, 3px);
+}
+
+.remake-edit__button:active::after {
+    transform: translate(-4px, -4px);
+}
+
+.remake-edit__button:focus {
+    outline: none;
+}
+
+/* REMAKE FLASH ELEMENTS */
+
+.flash {
+    max-width: 500px;
+    width: 90%;
+    transform: translateX(-50%);
+    position: fixed;
+    top: 1em;
+    left: calc(50% - 8px);
+    pointer-events: none; /* to prevent movement */
+    color: #fff;
+}
+
+.flash--error {
+    --block-background-color: #d96457;
+}
+
+.flash--success {
+    --block-background-color: #5784d9;
+}
+
+/* LAYOUT */
+
+h1,
+h2,
+h3,
+p {
+    color: var(--font-color);
+}
+
+p,
+li {
+    line-height: 1.5em;
+    margin: 1em 0;
+    max-width: 32em;
+}
+
+a {
+    color: var(--font-color);
+    cursor: pointer;
+}
+
+a.block {
+    text-decoration: none;
+    display: inline-block;
+}
+
+input,
+button {
+    font-family: var(--font-serif);
+}
+
+button {
+    font-size: .875em;
+}
+
+.split {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.split .left,
+.split .right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.split .left a,
+.split .right a {
+    margin: .6em;
+}
+
+.highlightEditables [edit-control],
+[data-user-is-page-author] [edit-control]:hover {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, .1);
+    background: rgba(0, 0, 0, .1);
+}
+
+article {
+    margin: 2em auto;
+}
+
+header,
+footer,
+article,
+.hero {
+    position: relative;
+    width: calc(100% - 1.6em);
+    max-width: 840px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header::before, header::after,
+footer::before, footer::after,
+.hero::before, .hero::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: calc(50vw - 50%);
+    height: 100%;
+    top: 0;
+    right: 100%;
+    background: inherit;
+    border: inherit;
+    box-shadow: inherit;
+}
+
+header::after,
+footer::after,
+.hero::after {
+    left: 100%;
+}
+
+[new\:topic], [new\:link] {
+    cursor: pointer;
+}
+
+/* HEADER */
+
+header {
+    --font-color: #fff;
+    background: var(--theme-color);
+    padding: .75em 0;
+}
+
+header a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* HERO */
+
+.hero {
+    --font-color: #fff;
+
+    padding-top: 3em;
+    background: var(--theme-color);
+    border-bottom: 4px solid #111;
+    box-shadow: 0 4px rgba(0, 0, 0, .3);
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+/* BODY */
+
+p.preamble {
+    font-style: italic;
+    --font-color: #555;
+}
+
+.instructions {
+    padding: .1em .8em;
+    background: #fff0a0;
+    margin-bottom: 1em;
+    border-left: 4px solid #efd85b;
+    font-size: .8em;
+}
+
+.instructions,
+.instructions p {
+    max-width: 40em;
+}
+
+section {
+    margin-bottom: 2em;
+}
+
+section h2 {
+    font-size: 1.2em;
+}
+
+.link-item {
+    position: relative;
+    display: block !important;
+    padding: .6em .4em;
+    margin-bottom: 1em;
+    transition: transform .2s;
+}
+
+.link-title {
+    display: block;
+    padding-bottom: .4em;
+}
+
+.link-url {
+    display: block;
+    font-size: .75em;
+    font-family: var(--font-mono);
+    color: #777;
+    word-break: break-all;
+}
+
+.link-url-button {
+    text-decoration: none;
+    font-size: .875em;
+    display: block;
+    color: var(--theme-color);
+    text-align: right;
+    width: 100%;
+}
+
+.links:empty::after {
+    content: 'Add your first link!';
+    font-style: italic;
+    text-align: center;
+    max-width: unset;
+    color: #555;
+    display: block;
+    line-height: 4em;
+}
+
+.popular-item {
+    padding: 0;
+}
+
+.popular-header,
+.popular-bio {
+    overflow: hidden;
+    padding: 8px 10px;
+}
+
+.popular-header {
+    --font-color: #fff;
+    color: var(--font-color);
+    background: var(--theme-color);
+    margin-top: -1px; /* blocks.css sizing quirk */
+}
+
+.popular-bio {
+    font-size: .875em;
+    font-weight: normal;
+    font-style: italic;
+}
+
+hr {
+    width: 30%;
+    min-width: 200px;
+    max-width: 500px;
+    border: 0;
+    border-top: 3px solid var(--font-color);
+}
+
+/* FOOTER */
+
+footer {
+    padding: 1.4em 0;
+}
+
+footer p {
+    font-style: italic;
+}
+
+footer a.remake {
+    font-weight: bold;
+}
+
+@media only screen and (min-width: 700px) {
+    .sidebar-split {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .mainbar {
+        width: 0;
+        flex-grow: 1;
+    }
+
+    .sidebar {
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 280px;
+        margin-left: .8em;
+    }
+}
+
+/* ACCOUNTS PAGES */
+
+label {
+    display: block;
+    margin-bottom: 1em;
+}
+
+.input-wrapper {
+    padding: 0;
+}
+
+.input-wrapper input {
+    padding: .4em .6em;
+    border: 0;
+    font-size: 1em;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+form button.block {
+    font-size: 1em;
+    margin-right: 0 !important;
+    margin-left: auto !important;
+}

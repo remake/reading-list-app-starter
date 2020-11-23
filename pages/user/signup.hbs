@@ -1,0 +1,42 @@
+<header>
+    <nav class="split">
+        <div class="left">
+            <a href="/">Shelf.page</a>
+        </div>
+        <div class="right">
+            <a href="/user/login">Log in</a>
+        </div>
+    </nav>
+</header>
+
+<div class="hero">
+    <h1>Sign up</h1>
+    <p>Get your own shelf.page!</p>
+</div>
+
+<article>
+    <form action="/user/signup" method="post">
+        <label>
+            <span>Username (you won't be able to change this later)</span>
+            <div class="fixed block input-wrapper">
+                <input type="text" name="username" required
+                                   placeholder="thesephist">
+            </div>
+        </label>
+        <label>
+            <span>Email</span>
+            <div class="fixed block input-wrapper">
+                <input type="email" name="email" required
+                                    placeholder="me@example.com">
+            </div>
+        </label>
+        <label>
+            <span>Password</span>
+            <div class="fixed block input-wrapper">
+                <input type="password" name="password" required>
+            </div>
+        </label>
+        <button class="accent block" type="submit">Sign up &rarr;</button>
+    </form>
+</article>
+

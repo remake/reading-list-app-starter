@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shelf.page</title>
+  <link rel="stylesheet" type="text/css" href="/assets/css/_remake.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/blocks.min.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    {{!-- Show errors --}}
+    {{#if flashErrors }}
+      {{#each flashErrors }}
+        <div>{{ this }}</div>
+      {{/each}}
+    {{/if}}
+    {{!-- Show success messages --}}
+    {{#if flashSuccesses }}
+      {{#each flashSuccesses }}
+        <div>{{ this }}</div>
+      {{/each}}
+    {{/if}}
+    {{> yield }}
+    <hr/>
+    <footer>
+        <p>
+        Shelf.page is a project by
+        <a href="https://thesephist.com/" target="_blank">@thesephist</a>.
+        It's made with
+        <a href="https://remaketheweb.com/" target="_blank" class="remake">Remake</a>
+        and
+        <a href="https://thesephist.github.io/blocks.css/" target="_blank">blocks.css</a>.
+        </p>
+    </footer>
+    {{#if isPageAuthor}}
+      {{!-- Prevent loading the Remake framework if the page isn't editable --}}
+      <script src="/assets/js/vendor/Sortable.min.js"></script>
+      <script src="/assets/js/vendor/crostini.min.js"></script>
+      <script src="/remake/js/remake.min.js"></script>
+      <script src="/assets/js/remake-init.js"></script>
+    {{/if}}
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
